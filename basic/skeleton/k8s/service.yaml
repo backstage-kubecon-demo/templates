@@ -1,9 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ${{ parameters.name }}
+  name: ${{ values.name }}
   labels:
-    app: ${{ parameters.name }}
+    app: ${{ values.name }}
+    backstage.io/kubernetes-id: ${{ values.name }}
 spec:
   ports:
     - port: 80
@@ -12,4 +13,4 @@ spec:
       name: http
   type: LoadBalancer
   selector:
-    app: ${{ parameters.name }}
+    app: ${{ values.name }}

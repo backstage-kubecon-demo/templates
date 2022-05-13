@@ -1,21 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ${{ parameters.name }}
+  name: ${{ values.name }}
   labels:
-    app: ${{ parameters.name }}
+    app: ${{ values.name }}
+    backstage.io/kubernetes-id: ${{ values.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ${{ parameters.name }}
+      app: ${{ values.name }}
+      backstage.io/kubernetes-id: ${{ values.name }}
   template:
     metadata:
       labels:
-        app: ${{ parameters.name }}
+        app: ${{ values.name }}
+        backstage.io/kubernetes-id: ${{ values.name }}
     spec:
       containers:
-        - name: ${{ parameters.name }}
+        - name: ${{ values.name }}
           image: $IMAGE_TAG
           ports:
             - containerPort: 80
